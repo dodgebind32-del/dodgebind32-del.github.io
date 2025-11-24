@@ -10,7 +10,6 @@
         padding: 40px;
         font-family: Arial, sans-serif;
         text-align: center;
-        background-color: #f5f5f5;
     }
 
     .title {
@@ -38,29 +37,28 @@
 
     .box {
         width: 350px;
-        height: 220px; /* fixed height to show part of the image */
         padding: 20px;
         border: 2px solid #ddd;
         border-radius: 8px;
         background-color: #f9f9f9;
-        overflow: hidden; /* crucial for “window” effect */
         transition: width 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         display: flex;
-        flex-direction: column;
-        justify-content: flex-start; /* text at top */
+        flex-direction: column; /* stack text and image vertically */
         align-items: center;
+        overflow: hidden; /* important for image reveal effect */
     }
 
     .box span {
         font-size: 20px;
         margin-bottom: 10px;
+        transition: none; /* text does not scale */
     }
 
     .box img {
-        width: 100%;
+        width: 100%; /* image fills box width */
         height: auto;
-        object-fit: cover; /* crop nicely */
-        transition: all 0.3s ease; /* smooth reveal as box expands */
+        object-fit: cover; /* crop image nicely */
+        transition: all 0.3s ease; /* smooth reveal when box expands */
     }
 
     .box:hover {
@@ -80,23 +78,23 @@
 <div class="box-container">
     <div class="box">
         <span>Ships</span>
-        <img src="ships.jpg" alt="Ships">
+        <img src="images/ships.jpg" alt="Ships Image">
     </div>
     <div class="box">
         <span>Turrets</span>
-        <img src="turrets.jpg" alt="Turrets">
+        <img src="images/turrets.jpg" alt="Turrets Image">
     </div>
     <div class="box">
         <span>Modules</span>
-        <img src="modules.jpg" alt="Modules">
+        <img src="images/modules.jpg" alt="Modules Image">
     </div>
     <div class="box">
         <span>Materials</span>
-        <img src="materials.jpg" alt="Materials">
+        <img src="images/materials.jpg" alt="Materials Image">
     </div>
     <div class="box">
         <span>Miscellaneous</span>
-        <img src="misc.jpg" alt="Miscellaneous">
+        <img src="images/misc.jpg" alt="Miscellaneous Image">
     </div>
 </div>
 
