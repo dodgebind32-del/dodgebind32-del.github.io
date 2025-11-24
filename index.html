@@ -4,40 +4,46 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BF-C Internal Market</title>
+
 <style>
-    /* Background gradient */
     body {
         margin: 0;
         padding: 40px;
         font-family: Arial, sans-serif;
         text-align: center;
-        background: linear-gradient(135deg, #B9A6F2, #7F66D2);
-        min-height: 150vh;
+        background: linear-gradient(180deg, #3a1f5d 0%, #1e1133 100%);
+        min-height: 200vh;
+        position: relative;
+        overflow-x: hidden;
     }
 
-    /* Logo fixed behind boxes */
-    .logo {
+    /* Centered parallax logo */
+    .logo-bg {
         position: fixed;
         top: 50%;
         left: 50%;
+        width: 550px;
+        height: 550px;
         transform: translate(-50%, -50%);
-        opacity: 0.08;
-        max-width: 50%;
-        z-index: 0;
+        opacity: 0.18;
+        z-index: -1;
         pointer-events: none;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
     }
 
-    /* Titles */
     .title {
         font-size: 32px;
         font-weight: bold;
-        color: #3A2F6B;
+        color: #fff;
+        text-shadow: 0 0 10px #a56eff;
     }
 
     .subtitle {
         font-size: 16px;
         margin-top: 5px;
-        color: #fff;
+        color: #d8c5ff;
     }
 
     .spacer {
@@ -50,85 +56,70 @@
         gap: 25px;
         align-items: center;
         margin-top: 40px;
-        position: relative;
-        z-index: 1;
     }
 
-    /* Boxes with pulsing purple glow */
+    /* Base box settings */
     .box {
         width: 350px;
-        height: 200px;
+        height: 160px;
+        padding: 30px;
         border: 2px solid #ddd;
         border-radius: 8px;
         background-color: #f9f9f9;
         overflow: hidden;
-        transition: width 0.3s ease, transform 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         position: relative;
+
+        /* fade in/out */
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+            opacity 0.6s ease,
+            transform 0.6s ease,
+            width 0.3s ease,
+            box-shadow 0.3s ease;
     }
 
-    /* Hover animation */
+    /* fade visible */
+    .box.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Hover expansion */
     .box:hover {
         width: 525px;
         transform: scaleY(1.1);
-        animation: pulseGlow 1.5s infinite alternate;
+        box-shadow: 0 0 14px 6px rgba(155, 90, 255, 0.7), 
+                    0 0 30px 15px rgba(80, 0, 160, 0.45);
     }
 
-    /* Glow keyframes */
-    @keyframes pulseGlow {
-        0% {
-            box-shadow: 
-                0 0 6px #6A1B9A,
-                0 0 12px #8E24AA,
-                0 0 24px #9C27B0;
-        }
-        50% {
-            box-shadow: 
-                0 0 10px #6A1B9A,
-                0 0 18px #8E24AA,
-                0 0 30px #9C27B0;
-        }
-        100% {
-            box-shadow: 
-                0 0 8px #6A1B9A,
-                0 0 16px #8E24AA,
-                0 0 24px #9C27B0;
-        }
-    }
-
-    /* Text over image */
+    /* Text inside box */
     .box span {
-        position: absolute;
+        position: relative;
         z-index: 2;
         font-size: 20px;
-        color: #fff;
-        text-shadow: 0 1px 4px rgba(0,0,0,0.8);
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        pointer-events: none;
+        color: black;
+        text-shadow: 0 0 8px rgba(240, 210, 255, 0.8);
     }
 
-    /* Images inside boxes */
+    /* Image behavior */
     .box img {
         position: absolute;
         top: 50%;
         left: 50%;
+        width: 148%;
+        height: auto;
         transform: translate(-50%, -50%);
-        width: auto;
-        height: 148%;
-        max-width: none;
-        transition: all 0.3s ease;
+        z-index: 1;
+        pointer-events: none;
+        object-fit: cover;
     }
-
 </style>
 </head>
 <body>
 
-<!-- Logo -->
-<img class="logo" src="images/logo.png" alt="Logo">
+<!-- LOGO BACKGROUND — name your file: logo.png -->
+<div class="logo-bg" style="background-image: url('logo.png');"></div>
 
 <div class="title">BF-C Internal Market</div>
 <div class="subtitle">Hosted by NebulaWhisperer</div>
@@ -136,30 +127,62 @@
 <div class="spacer"></div>
 
 <div class="box-container">
+
     <div class="box">
         <span>Ships</span>
-        <img src="images/ships.jpg" alt="Ships">
+        <img src="ship.png">
     </div>
+
     <div class="box">
         <span>Turrets</span>
-        <img src="images/turrets.jpg" alt="Turrets">
+        <img src="turret.png">
     </div>
+
     <div class="box">
         <span>Modules</span>
-        <img src="images/modules.jpg" alt="Modules">
+        <img src="modules.png">
     </div>
+
     <div class="box">
         <span>Materials</span>
-        <img src="images/materials.jpg" alt="Materials">
+        <img src="materials.png">
     </div>
+
     <div class="box">
         <span>Miscellaneous</span>
-        <img src="images/misc.jpg" alt="Miscellaneous">
+        <img src="misc.png">
     </div>
+
 </div>
+
+<!-- Fade-in observer -->
+<script>
+const boxes = document.querySelectorAll('.box');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        } else {
+            entry.target.classList.remove('visible');
+        }
+    });
+}, { threshold: 0.2 });
+
+boxes.forEach(box => observer.observe(box));
+
+// Parallax movement for logo
+window.addEventListener('scroll', () => {
+    const logo = document.querySelector('.logo-bg');
+    const y = window.scrollY * 0.15;
+    logo.style.transform = `translate(-50%, calc(-50% + ${y}px))`;
+});
+</script>
 
 </body>
 </html>
+
+
 
 
 
