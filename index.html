@@ -37,33 +37,38 @@
 
     .box {
         width: 350px;
-        padding: 20px;
+        height: 200px;             /* fixed box size */
         border: 2px solid #ddd;
         border-radius: 8px;
         background-color: #f9f9f9;
-        overflow: hidden; /* hides excess image outside box */
+        overflow: hidden;           /* hides excess image */
         transition: width 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         display: flex;
-        flex-direction: column; /* stack text and image vertically */
-        align-items: center;
+        align-items: flex-start;    /* image stays at top left */
+        justify-content: center;
+        position: relative;
     }
 
     .box span {
+        position: absolute;         /* text overlays image */
+        z-index: 2;
         font-size: 20px;
-        margin-bottom: 10px;
-        transition: none; /* text does not scale */
+        color: #fff;                /* white text */
+        text-shadow: 0 1px 3px rgba(0,0,0,0.7);
     }
 
     .box img {
-        width: 100%;       /* image fills box width */
-        height: auto;
-        object-fit: cover; /* crops image nicely */
-        transition: all 0.3s ease; /* smooth reveal when box expands */
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 100%;           /* ensure horizontal coverage */
+        height: auto;              /* natural height, crop hidden by overflow */
+        transition: all 0.3s ease;
     }
 
     .box:hover {
-        width: 525px;      /* expand horizontally */
-        transform: scaleY(1.1); /* small vertical expansion */
+        width: 525px;               /* expand horizontally */
+        transform: scaleY(1.1);     /* small vertical expansion */
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 </style>
