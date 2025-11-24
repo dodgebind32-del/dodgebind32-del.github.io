@@ -1,159 +1,209 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>BF-C Internal Market</title>
-
 <style>
+    body {
+        margin: 0;
+        padding: 40px;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: linear-gradient(135deg, #B9A6F2, #7F66D2);
+        min-height: 150vh;
+    }
 
-/* PAGE BACKGROUND */
-body {
-    background: radial-gradient(circle at center, #3a1f5f 0%, #1e1033 100%);
-    color: white;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
+    .logo {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.08;
+        max-width: 50%;
+        z-index: 0;
+        pointer-events: none;
+    }
 
-/* LOGO BACKGROUND — moves with scroll */
-.logo-bg {
-    position: fixed;
-    inset: 0;
-    background: url("logo.png") center center no-repeat;
-    opacity: 0.15;
-    background-size: 55%;
-    z-index: -1;
-    pointer-events: none;
-}
+    .title {
+        font-size: 32px;
+        font-weight: bold;
+        color: #3A2F6B;
+    }
 
-/* HEADER */
-.hosted {
-    text-align: center;
-    margin-top: 40px;
-    font-size: 28px;
-}
+    .subtitle {
+        font-size: 16px;
+        margin-top: 5px;
+        color: #fff;
+    }
 
-/* WELCOME BOX */
-.welcome {
-    width: 70%;
-    margin: 40px auto;
-    padding: 25px 35px;
-    background: rgba(0, 0, 0, 0.35);
-    border-radius: 18px;
-    text-align: center;
-    font-size: 20px;
-    line-height: 1.45;
+    /* ONLY CHANGE: increased font-size */
+    .welcome {
+        color: #eee;
+        font-size: 18px; /* made bigger */
+        max-width: 700px;
+        margin: 30px auto 10px auto;
+        line-height: 1.5;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.07);
+        border-radius: 8px;
+        backdrop-filter: blur(3px);
+    }
 
-    /* purple border + glow */
-    border: 2px solid rgba(140, 70, 255, 0.35);
-    box-shadow:
-        0 0 18px rgba(140, 70, 255, 0.45),
-        0 0 28px rgba(140, 70, 255, 0.25);
+    .spacer {
+        margin-top: 40px;
+    }
 
-    position: relative;
-    overflow: hidden;
-}
+    .box-container {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        align-items: center;
+        margin-top: 40px;
+        position: relative;
+        z-index: 1;
+    }
 
-/* SHIMMER EFFECT */
-.welcome::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -120%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        120deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.15) 50%,
-        transparent 100%
-    );
-    transform: skewX(-25deg);
-    animation: shimmer 6s infinite;
-}
+    .box {
+        width: 350px;
+        height: 200px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
 
-@keyframes shimmer {
-    0% { left: -120%; }
-    60% { left: 120%; }
-    100% { left: 120%; }
-}
+        opacity: 0;
+        transform: translateY(40px) scaleY(1);
+        transition:
+            opacity 0.6s ease,
+            transform 0.6s ease,
+            width 0.3s ease;
+    }
 
-/* ITEM CARDS */
-.item {
-    width: 260px;
-    margin: 25px auto;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.35);
-    border-radius: 18px;
-    text-align: center;
+    .box.visible {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
+    }
 
-    border: 2px solid rgba(160, 110, 255, 0.4);
-    box-shadow:
-        0 0 20px rgba(180, 130, 255, 0.4),
-        0 0 30px rgba(140, 60, 255, 0.25);
-}
+    .box:hover {
+        width: 525px;
+        transform: translateY(0) scaleY(1.1);
+        animation: pulseGlow 1.5s infinite alternate;
+    }
 
-.item img {
-    width: 100%;
-    border-radius: 12px;
-}
+    @keyframes pulseGlow {
+        0% {
+            box-shadow:
+                0 0 6px #6A1B9A,
+                0 0 12px #8E24AA,
+                0 0 24px #9C27B0;
+        }
+        50% {
+            box-shadow:
+                0 0 10px #6A1B9A,
+                0 0 18px #8E24AA,
+                0 0 30px #9C27B0;
+        }
+        100% {
+            box-shadow:
+                0 0 8px #6A1B9A,
+                0 0 16px #8E24AA,
+                0 0 24px #9C27B0;
+        }
+    }
 
-/* FADE SCROLL ANIMATION */
-.fade {
-    opacity: 0;
-    transform: translateY(25px);
-    transition: opacity .65s ease, transform .65s ease;
-}
+    .box span {
+        position: absolute;
+        z-index: 2;
+        font-size: 20px;
+        color: #fff;
+        text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+    }
 
-.fade.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+    .box img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        height: 148%;
+        max-width: none;
+        transition: all 0.3s ease;
+        z-index: 1;
+        pointer-events: none;
+    }
 
+    @media (max-width: 560px) {
+        .box { width: 90vw; }
+        .box:hover { width: 90vw; transform: translateY(0) scaleY(1.03); }
+    }
 </style>
 </head>
-
 <body>
 
-<div class="logo-bg"></div>
+<img class="logo" src="images/logo.png" alt="Logo">
 
-<h2 class="hosted">Hosted by NebulaWhisperer</h2>
+<div class="title">BF-C Internal Market</div>
+<div class="subtitle">Hosted by NebulaWhisperer</div>
 
-<div class="welcome fade">
-    <p>
-        Welcome to the BF-C internal market! This is a service offering goods and services when
-        the player market is not active. Ranks in BF-C correlate to prices in trades directly with the
-        BF-C market, but do not affect player-to-player trades. Place an order and head to our station
-        for goods, or meet us somewhere for services!
-    </p>
+<div class="welcome">
+    Welcome to the BF-C internal market! This is a service offering goods and
+    services when the player market is not active. Ranks in BF-C correlate to
+    prices in trades directly with the BF-C market, but do not affect
+    player-to-player trades. Place an order and head to our station for goods,
+    or meet us somewhere for services!
 </div>
 
-<!-- Example item -->
-<div class="item fade">
-    <img src="item1.png" alt="Item 1">
-    <h3>Item 1</h3>
-    <p>Description here</p>
-</div>
+<div class="spacer"></div>
 
-<div class="item fade">
-    <img src="item2.png" alt="Item 2">
-    <h3>Item 2</h3>
-    <p>Description here</p>
+<div class="box-container">
+    <div class="box">
+        <span>Ships</span>
+        <img src="images/ships.jpg" alt="Ships">
+    </div>
+    <div class="box">
+        <span>Turrets</span>
+        <img src="images/turrets.jpg" alt="Turrets">
+    </div>
+    <div class="box">
+        <span>Modules</span>
+        <img src="images/modules.jpg" alt="Modules">
+    </div>
+    <div class="box">
+        <span>Materials</span>
+        <img src="images/materials.jpg" alt="Materials">
+    </div>
+    <div class="box">
+        <span>Miscellaneous</span>
+        <img src="images/misc.jpg" alt="Miscellaneous">
+    </div>
 </div>
 
 <script>
-/* FADE ON SCROLL */
+const boxes = document.querySelectorAll('.box');
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-        } else {
-            entry.target.classList.remove("visible");
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+        else entry.target.classList.remove('visible');
     });
 }, { threshold: 0.2 });
 
-document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+boxes.forEach(box => observer.observe(box));
+
+window.addEventListener('scroll', () => {
+    const logo = document.querySelector('.logo');
+    if (!logo) return;
+    const y = window.scrollY * 0.15;
+    logo.style.transform = `translate(-50%, calc(-50% + ${y}px))`;
+});
 </script>
 
 </body>
