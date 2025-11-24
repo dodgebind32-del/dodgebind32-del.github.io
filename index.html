@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>BF-C Internal Market</title>
 <style>
-    /* Page background (unchanged purple theme from before) */
     body {
         margin: 0;
         padding: 40px;
@@ -15,7 +14,6 @@
         min-height: 150vh;
     }
 
-    /* Logo fixed behind boxes (unchanged) */
     .logo {
         position: fixed;
         top: 50%;
@@ -27,7 +25,6 @@
         pointer-events: none;
     }
 
-    /* Titles (unchanged) */
     .title {
         font-size: 32px;
         font-weight: bold;
@@ -38,6 +35,19 @@
         font-size: 16px;
         margin-top: 5px;
         color: #fff;
+    }
+
+    /* NEW welcome text block */
+    .welcome {
+        color: #eee;
+        font-size: 15px;
+        max-width: 700px;
+        margin: 30px auto 10px auto;
+        line-height: 1.5;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.07);
+        border-radius: 8px;
+        backdrop-filter: blur(3px);
     }
 
     .spacer {
@@ -54,7 +64,6 @@
         z-index: 1;
     }
 
-    /* Base box settings (keeps previous sizes/behaviour) */
     .box {
         width: 350px;
         height: 200px;
@@ -67,7 +76,6 @@
         justify-content: center;
         position: relative;
 
-        /* === ONLY ADDED: fade base state === */
         opacity: 0;
         transform: translateY(40px) scaleY(1);
         transition:
@@ -76,20 +84,17 @@
             width 0.3s ease;
     }
 
-    /* visible state (when in view) */
     .box.visible {
         opacity: 1;
         transform: translateY(0) scaleY(1);
     }
 
-    /* Hover expansion: keep the original pulsing glow behavior (unchanged) */
     .box:hover {
         width: 525px;
         transform: translateY(0) scaleY(1.1);
         animation: pulseGlow 1.5s infinite alternate;
     }
 
-    /* Glow keyframes (unchanged purple glow) */
     @keyframes pulseGlow {
         0% {
             box-shadow:
@@ -111,7 +116,6 @@
         }
     }
 
-    /* Text centered over image (unchanged) */
     .box span {
         position: absolute;
         z-index: 2;
@@ -124,7 +128,6 @@
         pointer-events: none;
     }
 
-    /* Images inside boxes (unchanged) - ensure images are referenced from images/ folder */
     .box img {
         position: absolute;
         top: 50%;
@@ -138,7 +141,6 @@
         pointer-events: none;
     }
 
-    /* small responsive tweak so boxes don't overflow on very small screens */
     @media (max-width: 560px) {
         .box { width: 90vw; }
         .box:hover { width: 90vw; transform: translateY(0) scaleY(1.03); }
@@ -147,11 +149,19 @@
 </head>
 <body>
 
-<!-- Logo (keep filename: images/logo.png) -->
 <img class="logo" src="images/logo.png" alt="Logo">
 
 <div class="title">BF-C Internal Market</div>
 <div class="subtitle">Hosted by NebulaWhisperer</div>
+
+<!-- NEW WELCOME TEXT -->
+<div class="welcome">
+    Welcome to the BF-C internal market! This is a service offering goods and
+    services when the player market is not active. Ranks in BF-C correlate to
+    prices in trades directly with the BF-C market, but do not affect
+    player-to-player trades. Place an order and head to our station for goods,
+    or meet us somewhere for services!
+</div>
 
 <div class="spacer"></div>
 
@@ -179,21 +189,16 @@
 </div>
 
 <script>
-/* IntersectionObserver for fade in / fade out (ONLY change requested) */
 const boxes = document.querySelectorAll('.box');
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        } else {
-            entry.target.classList.remove('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+        else entry.target.classList.remove('visible');
     });
 }, { threshold: 0.2 });
 
 boxes.forEach(box => observer.observe(box));
 
-/* keep the logo moving slightly with scroll (parallax) — unchanged behavior */
 window.addEventListener('scroll', () => {
     const logo = document.querySelector('.logo');
     if (!logo) return;
@@ -204,6 +209,7 @@ window.addEventListener('scroll', () => {
 
 </body>
 </html>
+
 
 
 
