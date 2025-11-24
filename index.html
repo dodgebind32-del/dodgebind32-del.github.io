@@ -1,79 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BF-C Internal Market</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BF-C Internal Market</title>
+<style>
+    body {
+        margin: 0;
+        padding: 40px;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f5f5f5;
+    }
 
-    <style>
-        body {
-            margin: 0;
-            padding: 40px;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
+    .title {
+        font-size: 32px;
+        font-weight: bold;
+    }
 
-        .title {
-            font-size: 32px;
-            font-weight: bold;
-        }
+    .subtitle {
+        font-size: 16px;
+        margin-top: 5px;
+        color: #555;
+    }
 
-        .subtitle {
-            font-size: 16px;
-            margin-top: 5px;
-            color: #555;
-        }
+    .spacer {
+        margin-top: 40px;
+    }
 
-        .spacer {
-            margin-top: 40px;
-        }
+    .box-container {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        align-items: center;
+        margin-top: 40px;
+    }
 
-        .box-container {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            align-items: center;
-            margin-top: 40px;
-        }
+    .box {
+        width: 350px;
+        height: 220px; /* fixed height to show part of the image */
+        padding: 20px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        overflow: hidden; /* crucial for “window” effect */
+        transition: width 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* text at top */
+        align-items: center;
+    }
 
-        .box {
-            width: 350px;
-            padding: 30px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-            transition: width 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    .box span {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
 
-        .box span {
-            font-size: 20px;
-            transition: none; /* text does not scale */
-        }
+    .box img {
+        width: 100%;
+        height: auto;
+        object-fit: cover; /* crop nicely */
+        transition: all 0.3s ease; /* smooth reveal as box expands */
+    }
 
-        .box:hover {
-            width: 525px; /* expand horizontally */
-            transform: scaleY(1.1); /* small vertical expansion */
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-    </style>
+    .box:hover {
+        width: 525px; /* expand horizontally */
+        transform: scaleY(1.1); /* small vertical expansion */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+</style>
 </head>
 <body>
 
-    <div class="title">BF-C Internal Market</div>
-    <div class="subtitle">Hosted by NebulaWhisperer</div>
+<div class="title">BF-C Internal Market</div>
+<div class="subtitle">Hosted by NebulaWhisperer</div>
 
-    <div class="spacer"></div>
+<div class="spacer"></div>
 
-    <div class="box-container">
-        <div class="box"><span>Ships</span></div>
-        <div class="box"><span>Turrets</span></div>
-        <div class="box"><span>Modules</span></div>
-        <div class="box"><span>Materials</span></div>
-        <div class="box"><span>Miscellaneous</span></div>
+<div class="box-container">
+    <div class="box">
+        <span>Ships</span>
+        <img src="ships.jpg" alt="Ships">
     </div>
+    <div class="box">
+        <span>Turrets</span>
+        <img src="turrets.jpg" alt="Turrets">
+    </div>
+    <div class="box">
+        <span>Modules</span>
+        <img src="modules.jpg" alt="Modules">
+    </div>
+    <div class="box">
+        <span>Materials</span>
+        <img src="materials.jpg" alt="Materials">
+    </div>
+    <div class="box">
+        <span>Miscellaneous</span>
+        <img src="misc.jpg" alt="Miscellaneous">
+    </div>
+</div>
 
 </body>
 </html>
