@@ -42,7 +42,7 @@
             border: 2px solid #ddd;
             border-radius: 8px;
             background-color: #f9f9f9;
-            transition: width 0.3s ease, box-shadow 0.3s ease;
+            transition: width 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -54,7 +54,8 @@
         }
 
         .box:hover {
-            width: 525px; /* expand horizontally only */
+            width: 525px; /* expand horizontally */
+            transform: scaleY(1.1); /* small vertical expansion */
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
     </style>
