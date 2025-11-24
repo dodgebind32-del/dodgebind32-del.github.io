@@ -41,13 +41,20 @@
             padding: 30px;
             border: 2px solid #ddd;
             border-radius: 8px;
-            font-size: 20px;
             background-color: #f9f9f9;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: width 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box span {
+            font-size: 20px;
+            transition: none; /* text does not scale */
         }
 
         .box:hover {
-            transform: scaleX(1.5) scaleY(1.05); /* expand horizontally more than vertically */
+            width: 525px; /* expand horizontally only */
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
     </style>
@@ -60,11 +67,11 @@
     <div class="spacer"></div>
 
     <div class="box-container">
-        <div class="box">Ships</div>
-        <div class="box">Turrets</div>
-        <div class="box">Modules</div>
-        <div class="box">Materials</div>
-        <div class="box">Miscellaneous</div>
+        <div class="box"><span>Ships</span></div>
+        <div class="box"><span>Turrets</span></div>
+        <div class="box"><span>Modules</span></div>
+        <div class="box"><span>Materials</span></div>
+        <div class="box"><span>Miscellaneous</span></div>
     </div>
 
 </body>
