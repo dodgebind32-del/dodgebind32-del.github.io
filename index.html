@@ -44,8 +44,8 @@
         overflow: hidden;
         transition: width 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         display: flex;
-        align-items: center;       /* center image vertically */
-        justify-content: center;   /* center horizontally */
+        align-items: center;
+        justify-content: center;
         position: relative;
     }
 
@@ -57,7 +57,7 @@
         text-shadow: 0 1px 3px rgba(0,0,0,0.7);
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%); /* center text in box */
+        transform: translate(-50%, -50%);
         pointer-events: none;
     }
 
@@ -65,15 +65,16 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%); /* center image */
-        min-width: 100%;
-        height: auto;
+        transform: translate(-50%, -50%);
+        width: auto;          /* keep natural width */
+        height: 120%;         /* slightly taller than box to allow vertical reveal */
+        max-width: none;      /* don’t stretch to fit width */
         transition: all 0.3s ease;
     }
 
     .box:hover {
-        width: 525px;             /* horizontal expansion */
-        transform: scaleY(1.1);   /* small vertical expansion */
+        width: 525px;         /* horizontal expansion */
+        transform: scaleY(1.1);  /* small vertical expansion */
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 </style>
@@ -110,3 +111,4 @@
 
 </body>
 </html>
+
