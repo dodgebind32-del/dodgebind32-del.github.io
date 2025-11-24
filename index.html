@@ -23,12 +23,43 @@
             margin-top: 5px;
             color: #555;
         }
+
+        .spacer {
+            margin-top: 40px;
+        }
+
+        .box-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .box {
+            width: 250px;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 18px;
+            background-color: #f9f9f9;
+        }
     </style>
 </head>
 <body>
 
     <div class="title">BF-C Internal Market</div>
     <div class="subtitle">Hosted by NebulaWhisperer</div>
+
+    <div class="spacer"></div>
+
+    <div class="box-container">
+        <div class="box">Ships</div>
+        <div class="box">Turrets</div>
+        <div class="box">Modules</div>
+        <div class="box">Materials</div>
+        <div class="box">Miscellaneous</div>
+    </div>
 
 </body>
 </html>
