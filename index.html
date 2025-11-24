@@ -1,71 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BF-C Internal Market</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BF-C Internal Market</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-    <style>
-        body {
-            margin: 0;
-            padding: 40px;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
+    /* Title and subtitle */
+    h1 {
+        margin-top: 50px;
+        font-size: 48px;
+        text-align: center;
+    }
 
-        .title {
-            font-size: 32px;
-            font-weight: bold;
-        }
+    h2 {
+        font-size: 20px;
+        text-align: center;
+        margin-top: 10px;
+    }
 
-        .subtitle {
-            font-size: 16px;
-            margin-top: 5px;
-            color: #555;
-        }
+    /* Spacer */
+    .spacer {
+        height: 50px;
+    }
 
-        .spacer {
-            margin-top: 40px;
-        }
+    /* Container for boxes */
+    .box-container {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 50px;
+    }
 
-        .box-container {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            align-items: center;
-            margin-top: 40px;
-        }
+    /* Boxes */
+    .box {
+        background-color: #4a90e2;
+        color: white;
+        width: 180px;
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        border-radius: 12px;
+        transition: all 0.5s ease;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
 
-        .box {
-            width: 350px;
-            padding: 30px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 20px;
-            background-color: #f9f9f9;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .box:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-    </style>
+    /* Hover effect */
+    .box:hover {
+        transform: scale(1.8); /* Much larger expansion */
+        box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    }
+</style>
 </head>
 <body>
 
-    <div class="title">BF-C Internal Market</div>
-    <div class="subtitle">Hosted by NebulaWhisperer</div>
+<h1>BF-C Internal Market</h1>
+<h2>Hosted by NebulaWhisperer</h2>
 
-    <div class="spacer"></div>
+<div class="spacer"></div>
 
-    <div class="box-container">
-        <div class="box">Ships</div>
-        <div class="box">Turrets</div>
-        <div class="box">Modules</div>
-        <div class="box">Materials</div>
-        <div class="box">Miscellaneous</div>
-    </div>
+<div class="box-container">
+    <div class="box">Ships</div>
+    <div class="box">Turrets</div>
+    <div class="box">Modules</div>
+    <div class="box">Materials</div>
+    <div class="box">Miscellaneous</div>
+</div>
 
 </body>
 </html>
