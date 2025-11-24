@@ -11,18 +11,17 @@
         padding: 40px;
         font-family: Arial, sans-serif;
         text-align: center;
-        background: linear-gradient(135deg, #E6E0F8, #C9BFF2); /* light to slightly darker purple */
-        position: relative;
-        min-height: 100vh;
+        background: linear-gradient(135deg, #B9A6F2, #7F66D2);
+        min-height: 150vh; /* make page scrollable to see effect */
     }
 
-    /* Logo behind boxes */
+    /* Logo fixed behind boxes */
     .logo {
-        position: absolute;
+        position: fixed; /* stays with viewport while scrolling */
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        opacity: 0.1;
+        opacity: 0.08;
         max-width: 50%;
         z-index: 0;
         pointer-events: none;
@@ -38,7 +37,7 @@
     .subtitle {
         font-size: 16px;
         margin-top: 5px;
-        color: #555;
+        color: #fff;
     }
 
     .spacer {
@@ -55,7 +54,6 @@
         z-index: 1;
     }
 
-    /* Boxes with glow effect */
     .box {
         width: 350px;
         height: 200px;
@@ -73,23 +71,21 @@
     .box:hover {
         width: 525px;
         transform: scaleY(1.1);
-        box-shadow: 0 8px 20px rgba(58, 47, 107, 0.5); /* purple glow on hover */
+        box-shadow: 0 8px 25px rgba(127, 102, 210, 0.7), 0 0 20px rgba(127, 102, 210, 0.5);
     }
 
-    /* Text over image */
     .box span {
         position: absolute;
         z-index: 2;
         font-size: 20px;
         color: #fff;
-        text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+        text-shadow: 0 1px 4px rgba(0,0,0,0.8);
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         pointer-events: none;
     }
 
-    /* Images inside boxes */
     .box img {
         position: absolute;
         top: 50%;
@@ -100,7 +96,6 @@
         max-width: none;
         transition: all 0.3s ease;
     }
-
 </style>
 </head>
 <body>
@@ -138,6 +133,7 @@
 
 </body>
 </html>
+
 
 
 
