@@ -37,12 +37,18 @@
         }
 
         .box {
-            width: 350px;      /* increased size */
-            padding: 30px;     /* larger padding */
+            width: 350px;
+            padding: 30px;
             border: 2px solid #ddd;
             border-radius: 8px;
-            font-size: 20px;   /* slightly larger text */
+            font-size: 20px;
             background-color: #f9f9f9;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
     </style>
 </head>
