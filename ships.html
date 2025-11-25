@@ -26,11 +26,11 @@
         pointer-events: none;
     }
 
+    /* Title without glow, correct darker purple */
     .title {
         font-size: 32px;
         font-weight: bold;
-        color: #3A2F6B;
-        text-shadow: 0 0 6px #6A1B9A, 0 0 12px #8E24AA; /* subtle purple glow */
+        color: #3A2F6B; /* correct dark purple */
         margin-bottom: 10px;
     }
 
@@ -44,12 +44,12 @@
         margin-top: 40px;
     }
 
+    /* 2 per row layout */
     .box-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         gap: 25px;
-        align-items: center;
+        justify-items: center;
         margin-top: 40px;
         position: relative;
         z-index: 1;
@@ -136,6 +136,12 @@
         pointer-events: none;
     }
 
+    /* Last box centered below the 2x rows */
+    .box-container .box:last-child {
+        grid-column: 1 / -1;
+        justify-self: center;
+    }
+
     @media (max-width: 560px) {
         .box { width: 90vw; height: 90vw; }
         .box:hover { width: 90vw; height: 90vw; transform: translateY(0) scaleY(1.03); }
@@ -175,8 +181,7 @@
         <span>Ship 6</span>
         <img src="images/ship6.jpg" alt="Ship 6">
     </div>
-    <!-- Centered single box below -->
-    <div class="box" style="flex-basis: 100%; display: flex; justify-content: center;">
+    <div class="box">
         <span>Ship 7</span>
         <img src="images/ship7.jpg" alt="Ship 7">
     </div>
