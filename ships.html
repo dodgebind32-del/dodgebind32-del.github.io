@@ -47,6 +47,7 @@
         z-index: 1;
     }
 
+    /* Square boxes */
     .box {
         width: 200px;
         height: 200px;
@@ -60,21 +61,20 @@
         position: relative;
 
         opacity: 0;
-        transform: translateY(40px) scaleY(1);
-        transition:
-            opacity 0.6s ease,
-            transform 0.6s ease,
-            width 0.3s ease;
+        transform: translateY(40px) scale(1);
+        transition: opacity 0.6s ease, width 0.3s ease, height 0.3s ease, transform 0.3s ease;
     }
 
     .box.visible {
         opacity: 1;
-        transform: translateY(0) scaleY(1);
+        transform: translateY(0) scale(1);
     }
 
+    /* Hover: expand box only, reveal more of image */
     .box:hover {
-        width: 216px; /* slightly wider on hover */
-        transform: scaleY(1.08); /* small vertical expansion */
+        width: 216px;   /* slightly larger horizontally */
+        height: 216px;  /* slightly larger vertically */
+        transform: translateY(0);
         animation: pulseGlow 1.5s infinite alternate;
         cursor: pointer;
     }
@@ -118,9 +118,8 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: auto;
-        height: 148%;
+        height: 148%; /* image stays same size */
         max-width: none;
-        transition: all 0.3s ease;
         z-index: 1;
         pointer-events: none;
     }
@@ -133,7 +132,7 @@
 
     @media (max-width: 560px) {
         .box { width: 90vw; height: 90vw; }
-        .box:hover { width: 90vw; transform: scaleY(1.03); }
+        .box:hover { width: 90vw; height: 90vw; transform: translateY(0); }
     }
 </style>
 </head>
