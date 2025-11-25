@@ -10,13 +10,13 @@
     }
 
     body {
-    margin: 0;
-    padding: 40px;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: linear-gradient(135deg, #9A86E8, #5E47B5);
-    min-height: 150vh;
-}
+        margin: 0;
+        padding: 40px;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: linear-gradient(135deg, #9C8AE0, #6A53C3);
+        min-height: 150vh;
+    }
 
     .logo {
         position: fixed;
@@ -67,6 +67,11 @@
         z-index: 1;
     }
 
+    .box-link {
+        text-decoration: none;
+        color: inherit;
+    }
+
     .box {
         width: 350px;
         height: 200px;
@@ -78,6 +83,7 @@
         align-items: center;
         justify-content: center;
         position: relative;
+        cursor: pointer;
 
         opacity: 0;
         transform: translateY(40px) scaleY(1);
@@ -168,26 +174,42 @@
 <div class="spacer"></div>
 
 <div class="box-container">
-    <div class="box">
-        <span>Ships</span>
-        <img src="images/ships.jpg" alt="Ships">
-    </div>
-    <div class="box">
-        <span>Turrets</span>
-        <img src="images/turrets.jpg" alt="Turrets">
-    </div>
-    <div class="box">
-        <span>Modules</span>
-        <img src="images/modules.jpg" alt="Modules">
-    </div>
-    <div class="box">
-        <span>Materials</span>
-        <img src="images/materials.jpg" alt="Materials">
-    </div>
-    <div class="box">
-        <span>Miscellaneous</span>
-        <img src="images/misc.jpg" alt="Miscellaneous">
-    </div>
+
+    <a class="box-link" href="ships.html">
+        <div class="box">
+            <span>Ships</span>
+            <img src="images/ships.jpg" alt="Ships">
+        </div>
+    </a>
+
+    <a class="box-link" href="turrets.html">
+        <div class="box">
+            <span>Turrets</span>
+            <img src="images/turrets.jpg" alt="Turrets">
+        </div>
+    </a>
+
+    <a class="box-link" href="modules.html">
+        <div class="box">
+            <span>Modules</span>
+            <img src="images/modules.jpg" alt="Modules">
+        </div>
+    </a>
+
+    <a class="box-link" href="materials.html">
+        <div class="box">
+            <span>Materials</span>
+            <img src="images/materials.jpg" alt="Materials">
+        </div>
+    </a>
+
+    <a class="box-link" href="misc.html">
+        <div class="box">
+            <span>Miscellaneous</span>
+            <img src="images/misc.jpg" alt="Miscellaneous">
+        </div>
+    </a>
+
 </div>
 
 <script>
@@ -211,6 +233,7 @@ window.addEventListener('scroll', () => {
 
 </body>
 </html>
+
 
 
 
