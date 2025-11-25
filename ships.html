@@ -10,7 +10,7 @@
         padding: 40px;
         font-family: Arial, sans-serif;
         text-align: center;
-        background: linear-gradient(135deg, #B9A6F2, #7F66D2); /* same as main page */
+        background: linear-gradient(135deg, #9C8AE0, #6A53C3); /* updated gradient */
         min-height: 150vh;
     }
 
@@ -26,11 +26,10 @@
         pointer-events: none;
     }
 
-    /* Title without glow, correct darker purple */
     .title {
         font-size: 32px;
         font-weight: bold;
-        color: #3A2F6B; /* correct dark purple */
+        color: #3A2F6B; /* dark purple */
         margin-bottom: 10px;
     }
 
@@ -44,12 +43,12 @@
         margin-top: 40px;
     }
 
-    /* 2 per row layout */
+    /* 2 per row layout, centered */
     .box-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 25px;
-        justify-items: center;
+        justify-items: center; /* center the boxes horizontally */
         margin-top: 40px;
         position: relative;
         z-index: 1;
@@ -83,8 +82,8 @@
     }
 
     .box:hover {
-        width: 250px; /* expand horizontally */
-        height: 250px; /* expand vertically slightly */
+        width: 250px;
+        height: 250px;
         transform: translateY(0) scaleY(1.1);
         animation: pulseGlow 1.5s infinite alternate;
         cursor: pointer;
