@@ -7,39 +7,56 @@
 
     <style>
         body {
-            background-color: #0f0f0f;
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 40px;
+            padding: 0;
+            background-image: url('images/background.jpg'); /* same as main page */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .logo {
+            margin-top: 30px;
+            width: 260px; /* same size as main page */
+        }
+
+        h1 {
+            margin-top: 10px;
+            color: white;
+            font-size: 42px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px black;
         }
 
         .container {
+            margin-top: 40px;
             display: grid;
             grid-template-columns: repeat(2, 250px);
             grid-gap: 30px;
             justify-content: center;
-            width: fit-content;
         }
 
         .ship-box {
             width: 250px;
-            height: 250px; /* makes the box square */
-            background-color: #1a1a1a;
+            height: 250px;
+            background-color: rgba(0, 0, 0, 0.7);
             border: 2px solid #333;
             border-radius: 12px;
-            box-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
             transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
         }
 
         .ship-box:hover {
             transform: scale(1.03);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
-            background-color: #222;
+            background-color: rgba(40, 40, 40, 0.8);
         }
 
-        /* Center the 7th box by spanning it across both columns */
         .ship-box:nth-child(7) {
             grid-column: span 2;
             justify-self: center;
@@ -48,6 +65,14 @@
 </head>
 
 <body>
+
+    <!-- logo from main page -->
+    <img src="images/logo.png" alt="Logo" class="logo">
+
+    <!-- page title -->
+    <h1>Ships</h1>
+
+    <!-- ships grid -->
     <div class="container">
         <div class="ship-box"></div>
         <div class="ship-box"></div>
@@ -55,7 +80,8 @@
         <div class="ship-box"></div>
         <div class="ship-box"></div>
         <div class="ship-box"></div>
-        <div class="ship-box"></div> <!-- centered row -->
+        <div class="ship-box"></div>
     </div>
+
 </body>
 </html>
