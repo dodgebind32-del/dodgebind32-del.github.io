@@ -41,7 +41,7 @@
         display: grid;
         grid-template-columns: repeat(2, 200px);
         gap: 25px;
-        justify-content: center; /* center the whole grid */
+        justify-content: center; /* center the grid */
         margin-top: 40px;
         position: relative;
         z-index: 1;
@@ -70,8 +70,9 @@
         transform: translateY(0) scale(1);
     }
 
+    /* Hover: scale box, image stays fixed */
     .box:hover {
-        transform: scale(1.08); /* smaller hover, expand from center */
+        transform: translateY(0) scale(1.08);
         animation: pulseGlow 1.5s infinite alternate;
         cursor: pointer;
     }
@@ -117,7 +118,6 @@
         width: auto;
         height: 148%;
         max-width: none;
-        transition: all 0.3s ease;
         z-index: 1;
         pointer-events: none;
     }
