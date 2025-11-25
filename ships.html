@@ -44,15 +44,15 @@
     }
 
     /* 2 per row layout, centered */
-    .box-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
-        justify-items: center; /* center the boxes horizontally */
-        margin-top: 40px;
-        position: relative;
-        z-index: 1;
-    }
+   .box-container {
+    display: grid;
+    grid-template-columns: repeat(2, 200px); /* fixed width for 2 per row */
+    gap: 25px;
+    justify-content: center; /* centers the entire grid horizontally */
+    margin-top: 40px;
+    position: relative;
+    z-index: 1;
+}
 
     /* Square boxes */
     .box {
