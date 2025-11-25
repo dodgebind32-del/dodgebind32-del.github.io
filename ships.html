@@ -1,105 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ships</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ships - BF-C Internal Market</title>
+<style>
+    body {
+        margin: 0;
+        padding: 40px;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: linear-gradient(135deg, #B9A6F2, #7F66D2); /* same as main page */
+        min-height: 150vh;
+    }
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+    /* Logo behind boxes */
+    .logo {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.08;
+        max-width: 50%;
+        z-index: 0;
+        pointer-events: none;
+    }
 
-            /* SAME PURPLE GRADIENT BACKGROUND */
-            background: linear-gradient(180deg, #3b0066 0%, #1f0036 100%);
-            background-attachment: fixed;
+    .title {
+        font-size: 32px;
+        font-weight: bold;
+        color: #3A2F6B;
+        text-shadow: 0 0 6px #6A1B9A, 0 0 12px #8E24AA; /* subtle purple glow */
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+        margin-top: 5px;
+        color: #fff;
+    }
+
+    .spacer {
+        margin-top: 40px;
+    }
+
+    .box-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 25px;
+        align-items: center;
+        margin-top: 40px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Square boxes */
+    .box {
+        width: 200px;
+        height: 200px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        opacity: 0;
+        transform: translateY(40px) scaleY(1);
+        transition:
+            opacity 0.6s ease,
+            transform 0.6s ease,
+            width 0.3s ease,
+            height 0.3s ease;
+    }
+
+    .box.visible {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
+    }
+
+    .box:hover {
+        width: 250px; /* expand horizontally */
+        height: 250px; /* expand vertically slightly */
+        transform: translateY(0) scaleY(1.1);
+        animation: pulseGlow 1.5s infinite alternate;
+        cursor: pointer;
+    }
+
+    @keyframes pulseGlow {
+        0% {
+            box-shadow:
+                0 0 6px #6A1B9A,
+                0 0 12px #8E24AA,
+                0 0 24px #9C27B0;
         }
-
-        /* SAME BACKGROUND LOGO BEHIND EVERYTHING */
-        .bg-logo {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 600px;
-            opacity: 0.12; /* same opacity */
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: -2; /* stays behind boxes */
+        50% {
+            box-shadow:
+                0 0 10px #6A1B9A,
+                0 0 18px #8E24AA,
+                0 0 30px #9C27B0;
         }
-
-        /* SAME GOLD + PURPLE GLOW EFFECT */
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 10px #d4a200, 0 0 20px #d4a200; }
-            50% { box-shadow: 0 0 22px #f8d868, 0 0 35px #b66bff; }
-            100% { box-shadow: 0 0 10px #d4a200, 0 0 20px #d4a200; }
+        100% {
+            box-shadow:
+                0 0 8px #6A1B9A,
+                0 0 16px #8E24AA,
+                0 0 24px #9C27B0;
         }
+    }
 
-        h1 {
-            color: white;
-            margin-top: 30px;
-            margin-bottom: 20px;
-            font-size: 44px;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px #000;
-            animation: pulseGlow 3s infinite;
-        }
+    .box span {
+        position: absolute;
+        z-index: 2;
+        font-size: 16px;
+        color: #fff;
+        text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+    }
 
-        /* SHIP GRID */
-        .container {
-            margin-top: 20px;
-            display: grid;
-            grid-template-columns: repeat(2, 260px);
-            grid-gap: 35px;
-            justify-content: center;
-            margin-bottom: 80px;
-        }
+    .box img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        height: 148%;
+        max-width: none;
+        transition: all 0.3s ease;
+        z-index: 1;
+        pointer-events: none;
+    }
 
-        /* SHIP BOX STYLING */
-        .ship-box {
-            width: 260px;
-            height: 260px;
-            border-radius: 14px;
-            background-color: rgba(0, 0, 0, 0.7);
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            animation: pulseGlow 3s infinite;
-            transition: transform 0.25s ease;
-        }
-
-        .ship-box:hover {
-            transform: scale(1.04);
-        }
-
-        /* CENTER THE 7th BOX */
-        .ship-box:nth-child(7) {
-            grid-column: span 2;
-            justify-self: center;
-        }
-    </style>
+    @media (max-width: 560px) {
+        .box { width: 90vw; height: 90vw; }
+        .box:hover { width: 90vw; height: 90vw; transform: translateY(0) scaleY(1.03); }
+    }
+</style>
 </head>
-
 <body>
 
-    <!-- SAME BACKGROUND LOGO BELOW EVERYTHING -->
-    <img src="images/logo.png" class="bg-logo" alt="Logo">
+<img class="logo" src="images/logo.png" alt="Logo">
 
-    <!-- PAGE TITLE -->
-    <h1>Ships</h1>
+<div class="title">Ships</div>
 
-    <!-- 7 SHIP BOXES -->
-    <div class="container">
-        <div class="ship-box"></div>
-        <div class="ship-box"></div>
-        <div class="ship-box"></div>
-        <div class="ship-box"></div>
-        <div class="ship-box"></div>
-        <div class="ship-box"></div>
-        <div class="ship-box"></div>
+<div class="spacer"></div>
+
+<div class="box-container">
+    <div class="box">
+        <span>Ship 1</span>
+        <img src="images/ship1.jpg" alt="Ship 1">
     </div>
+    <div class="box">
+        <span>Ship 2</span>
+        <img src="images/ship2.jpg" alt="Ship 2">
+    </div>
+    <div class="box">
+        <span>Ship 3</span>
+        <img src="images/ship3.jpg" alt="Ship 3">
+    </div>
+    <div class="box">
+        <span>Ship 4</span>
+        <img src="images/ship4.jpg" alt="Ship 4">
+    </div>
+    <div class="box">
+        <span>Ship 5</span>
+        <img src="images/ship5.jpg" alt="Ship 5">
+    </div>
+    <div class="box">
+        <span>Ship 6</span>
+        <img src="images/ship6.jpg" alt="Ship 6">
+    </div>
+    <!-- Centered single box below -->
+    <div class="box" style="flex-basis: 100%; display: flex; justify-content: center;">
+        <span>Ship 7</span>
+        <img src="images/ship7.jpg" alt="Ship 7">
+    </div>
+</div>
+
+<script>
+const boxes = document.querySelectorAll('.box');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+        else entry.target.classList.remove('visible');
+    });
+}, { threshold: 0.2 });
+
+boxes.forEach(box => observer.observe(box));
+
+window.addEventListener('scroll', () => {
+    const logo = document.querySelector('.logo');
+    if (!logo) return;
+    const y = window.scrollY * 0.15;
+    logo.style.transform = `translate(-50%, calc(-50% + ${y}px))`;
+});
+</script>
 
 </body>
 </html>
