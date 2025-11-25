@@ -36,18 +36,16 @@
         margin-top: 40px;
     }
 
-    /* 2 per row, centered grid */
     .box-container {
         display: grid;
         grid-template-columns: repeat(2, 200px);
         gap: 25px;
-        justify-content: center; /* center the grid */
+        justify-content: center;
         margin-top: 40px;
         position: relative;
         z-index: 1;
     }
 
-    /* Square boxes */
     .box {
         width: 200px;
         height: 200px;
@@ -70,7 +68,6 @@
         transform: translateY(0) scale(1);
     }
 
-    /* Hover: scale box, image stays fixed */
     .box:hover {
         transform: translateY(0) scale(1.08);
         animation: pulseGlow 1.5s infinite alternate;
@@ -116,13 +113,13 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: auto;
-        height: 148%;
+        height: 138%; /* zoomed out a bit from 148% to 138% */
         max-width: none;
         z-index: 1;
         pointer-events: none;
+        transition: all 0.3s ease;
     }
 
-    /* Last box centered below the two rows */
     .box-container .box:last-child {
         grid-column: 1 / -1;
         justify-self: center;
