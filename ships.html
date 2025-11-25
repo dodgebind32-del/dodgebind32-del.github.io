@@ -9,54 +9,72 @@
         body {
             margin: 0;
             padding: 0;
-            background-image: url('images/background.jpg'); /* same as main page */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            min-height: 100vh;
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+
+            /* SAME PURPLE GRADIENT BACKGROUND */
+            background: linear-gradient(180deg, #3b0066 0%, #1f0036 100%);
+            background-attachment: fixed;
         }
 
-        .logo {
-            margin-top: 30px;
-            width: 260px; /* same size as main page */
+        /* SAME BACKGROUND LOGO BEHIND EVERYTHING */
+        .bg-logo {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            opacity: 0.12; /* same opacity */
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: -2; /* stays behind boxes */
+        }
+
+        /* SAME GOLD + PURPLE GLOW EFFECT */
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 10px #d4a200, 0 0 20px #d4a200; }
+            50% { box-shadow: 0 0 22px #f8d868, 0 0 35px #b66bff; }
+            100% { box-shadow: 0 0 10px #d4a200, 0 0 20px #d4a200; }
         }
 
         h1 {
-            margin-top: 10px;
             color: white;
-            font-size: 42px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-size: 44px;
             letter-spacing: 2px;
-            text-shadow: 0 0 10px black;
+            text-shadow: 0 0 10px #000;
+            animation: pulseGlow 3s infinite;
         }
 
+        /* SHIP GRID */
         .container {
-            margin-top: 40px;
+            margin-top: 20px;
             display: grid;
-            grid-template-columns: repeat(2, 250px);
-            grid-gap: 30px;
+            grid-template-columns: repeat(2, 260px);
+            grid-gap: 35px;
             justify-content: center;
+            margin-bottom: 80px;
         }
 
+        /* SHIP BOX STYLING */
         .ship-box {
-            width: 250px;
-            height: 250px;
+            width: 260px;
+            height: 260px;
+            border-radius: 14px;
             background-color: rgba(0, 0, 0, 0.7);
-            border: 2px solid #333;
-            border-radius: 12px;
-            box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
-            transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            animation: pulseGlow 3s infinite;
+            transition: transform 0.25s ease;
         }
 
         .ship-box:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
-            background-color: rgba(40, 40, 40, 0.8);
+            transform: scale(1.04);
         }
 
+        /* CENTER THE 7th BOX */
         .ship-box:nth-child(7) {
             grid-column: span 2;
             justify-self: center;
@@ -66,13 +84,13 @@
 
 <body>
 
-    <!-- logo from main page -->
-    <img src="images/logo.png" alt="Logo" class="logo">
+    <!-- SAME BACKGROUND LOGO BELOW EVERYTHING -->
+    <img src="images/logo.png" class="bg-logo" alt="Logo">
 
-    <!-- page title -->
+    <!-- PAGE TITLE -->
     <h1>Ships</h1>
 
-    <!-- ships grid -->
+    <!-- 7 SHIP BOXES -->
     <div class="container">
         <div class="ship-box"></div>
         <div class="ship-box"></div>
