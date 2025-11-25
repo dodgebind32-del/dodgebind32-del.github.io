@@ -10,11 +10,10 @@
         padding: 40px;
         font-family: Arial, sans-serif;
         text-align: center;
-        background: linear-gradient(135deg, #9C8AE0, #6A53C3); /* updated gradient */
+        background: linear-gradient(135deg, #9C8AE0, #6A53C3);
         min-height: 150vh;
     }
 
-    /* Logo behind boxes */
     .logo {
         position: fixed;
         top: 50%;
@@ -29,61 +28,53 @@
     .title {
         font-size: 32px;
         font-weight: bold;
-        color: #3A2F6B; /* dark purple */
+        color: #3A2F6B;
         margin-bottom: 10px;
-    }
-
-    .subtitle {
-        font-size: 16px;
-        margin-top: 5px;
-        color: #fff;
     }
 
     .spacer {
         margin-top: 40px;
     }
 
-    /* 2 per row layout, centered */
-   .box-container {
-    display: grid;
-    grid-template-columns: repeat(2, 200px); /* fixed width for 2 per row */
-    gap: 25px;
-    justify-content: center; /* centers the entire grid horizontally */
-    margin-top: 40px;
-    position: relative;
-    z-index: 1;
-}
+    /* 2 per row, centered grid */
+    .box-container {
+        display: grid;
+        grid-template-columns: repeat(2, 200px);
+        gap: 25px;
+        justify-content: center; /* center the whole grid */
+        margin-top: 40px;
+        position: relative;
+        z-index: 1;
+    }
 
     /* Square boxes */
-   .box {
-    width: 200px;
-    height: 200px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+    .box {
+        width: 200px;
+        height: 200px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
 
-    opacity: 0;
-    transform: translateY(40px) scale(1);
-    transition:
-        opacity 0.6s ease,
-        transform 0.3s ease; /* smoother hover */
-}
+        opacity: 0;
+        transform: translateY(40px) scale(1);
+        transition: opacity 0.6s ease, transform 0.3s ease;
+    }
 
-.box.visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-}
+    .box.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 
-.box:hover {
-    transform: translateY(0) scale(1.08); /* smaller expansion, centered */
-    animation: pulseGlow 1.5s infinite alternate;
-    cursor: pointer;
-}
+    .box:hover {
+        transform: scale(1.08); /* smaller hover, expand from center */
+        animation: pulseGlow 1.5s infinite alternate;
+        cursor: pointer;
+    }
 
     @keyframes pulseGlow {
         0% {
@@ -131,7 +122,7 @@
         pointer-events: none;
     }
 
-    /* Last box centered below the 2x rows */
+    /* Last box centered below the two rows */
     .box-container .box:last-child {
         grid-column: 1 / -1;
         justify-self: center;
@@ -139,7 +130,7 @@
 
     @media (max-width: 560px) {
         .box { width: 90vw; height: 90vw; }
-        .box:hover { width: 90vw; height: 90vw; transform: translateY(0) scaleY(1.03); }
+        .box:hover { transform: scale(1.03); }
     }
 </style>
 </head>
@@ -153,32 +144,32 @@
 
 <div class="box-container">
     <div class="box">
-        <span>Ship 1</span>
-        <img src="images/ship1.jpg" alt="Ship 1">
+        <span>Fighters</span>
+        <img src="images/fighter.jpg" alt="Fighters">
     </div>
     <div class="box">
-        <span>Ship 2</span>
-        <img src="images/ship2.jpg" alt="Ship 2">
+        <span>Interceptors</span>
+        <img src="images/interceptor.jpg" alt="Interceptors">
     </div>
     <div class="box">
-        <span>Ship 3</span>
-        <img src="images/ship3.jpg" alt="Ship 3">
+        <span>Haulers</span>
+        <img src="images/hauler.jpg" alt="Haulers">
     </div>
     <div class="box">
-        <span>Ship 4</span>
-        <img src="images/ship4.jpg" alt="Ship 4">
+        <span>Miners</span>
+        <img src="images/miner.jpg" alt="Miners">
     </div>
     <div class="box">
-        <span>Ship 5</span>
-        <img src="images/ship5.jpg" alt="Ship 5">
+        <span>Corvettes</span>
+        <img src="images/corvette.jpg" alt="Corvettes">
     </div>
     <div class="box">
-        <span>Ship 6</span>
-        <img src="images/ship6.jpg" alt="Ship 6">
+        <span>Frigates</span>
+        <img src="images/frigate.jpg" alt="Frigates">
     </div>
     <div class="box">
-        <span>Ship 7</span>
-        <img src="images/ship7.jpg" alt="Ship 7">
+        <span>Destroyers</span>
+        <img src="images/destroyer.jpg" alt="Destroyers">
     </div>
 </div>
 
